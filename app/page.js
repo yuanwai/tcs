@@ -20,14 +20,14 @@ const App = () => {
   ];
 
   const images = [
-    { id: 1, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 2, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 3, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 4, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 5, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 6, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 7, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
-    { id: 8, imageUrl: 'https://via.placeholder.com/200x120', altText: '图片展示内容' },
+    { id: 1, imageUrl: 'https://www.luxiangdong.com/images/food/meishi1-600x360.png', altText: '图片展示内容' },
+    { id: 2, imageUrl: 'https://www.luxiangdong.com/images/food/meishi2-600x360.png', altText: '图片展示内容' },
+    { id: 3, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang1-400x240.png', altText: '图片展示内容' },
+    { id: 4, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang2-400x240.png', altText: '图片展示内容' },
+    { id: 5, imageUrl: 'https://www.luxiangdong.com/images/food/meishi1-600x360.png', altText: '图片展示内容' },
+    { id: 6, imageUrl: 'https://www.luxiangdong.com/images/food/meishi2-600x360.png', altText: '图片展示内容' },
+    { id: 7, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang1-400x240.png', altText: '图片展示内容' },
+    { id: 8, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang2-400x240.png', altText: '图片展示内容' },
     // ... Add more image data here
   ];
 
@@ -42,18 +42,31 @@ const App = () => {
     setShowDetailedSubMenu(!showDetailedSubMenu);
   };
 
+  const currentPage = 1;
+  const totalPages = 6;
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(i);
+    }
+    return pageNumbers;
+  };
+
   return (
     <div>
       {/* Top Area */}
-      <div className="bg-gray-200 p-4 flex justify-between items-center">
+      <div className="p-2 flex justify-between items-center shadow-md">
         <div className="flex items-center w-4/5">
           {/* Logo */}
-          <div className="bg-blue-500 h-8 w-8"></div>
+          <div className="h-16 w-16">
+            <img src="https://www.luxiangdong.com/images/m2-rmbg.png" />
+          </div>
           {/* Search box */}
           <input
             type="text"
             placeholder="Search..."
-            className="ml-4 p-2 rounded-md w-4/5"
+            className="outline outline-offset-0 outline-gray-300 ml-4 p-2 rounded-md w-4/5 shadow-sm focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
 
@@ -61,66 +74,64 @@ const App = () => {
         <div className="flex items-center">
           {/* Three menu items */}
           <div className="mr-4">
-            <button className="px-2 py-1 rounded-md bg-blue-500 text-white">
+            <button className="px-2 py-1 rounded-md text-gray">
               文档
             </button>
           </div>
           <div className="mr-4">
-            <button className="px-2 py-1 rounded-md bg-blue-500 text-white">
+            <button className="px-2 py-1 rounded-md text-gray">
               联系
             </button>
           </div>
           <div className="relative mr-4">
             <button
-              className="px-2 py-1 rounded-md bg-blue-500 text-white"
-              onMouseEnter={handleSubMenuToggle}
-              onMouseLeave={handleSubMenuToggle}
-            >
+              className="px-2 py-1 rounded-md text-gray">
               用户中心
             </button>
-            {/* Submenu */}
-            {showSubMenu && (
-              <div className="absolute mt-2 bg-white border border-gray-300 p-2 rounded-md">
-                {menuItems.map((menuItem, index) => (
-                  <div key={index}>
-                    <div
-                      className="font-semibold mb-1 cursor-pointer"
-                      onMouseEnter={handleDetailedSubMenuToggle}
-                      onMouseLeave={handleDetailedSubMenuToggle}
-                    >
-                      {menuItem.label}
-                    </div>
-                    {/* Detailed Submenu */}
-                    {showDetailedSubMenu &&
-                      menuItem.label === '分类' && (
-                        <div className="ml-2">
-                          {detailedSubMenuItems.map((item, index) => (
-                            <div key={index}>
-                              <a href="#">{item}</a>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>
 
       {/* Main Area */}
-      <div className="flex p-4">
+      <div className="flex p-4 bg-x-gradient-grey-200-grey-400-80">
         {/* Left Menu Area */}
-        <div className="bg-gray-300 p-4 w-1/12 h-full">
+        <div className="p-4 w-1/12 h-full">
           {/* Left Menu content */}
           <div className="mb-4">
             <div className="font-semibold mb-2">分类</div>
             <ul>
               {menuItems[0].subItems.map((item, index) => (
-                <li key={index}>
+                <li key={index} className="px-2 py-1 rounded-md"
+                  onMouseEnter={handleSubMenuToggle}
+                  onMouseLeave={handleSubMenuToggle}>
                   {/* Submenu item */}
                   <a href="#">{item}</a>
+                  {showSubMenu && (
+                    <div className="absolute mt-2 bg-white border p-2 rounded-md">
+                      {menuItems.map((menuItem, index) => (
+                        <div key={index}>
+                          <div
+                            className="font-semibold mb-1 cursor-pointer"
+                            onMouseEnter={handleDetailedSubMenuToggle}
+                            onMouseLeave={handleDetailedSubMenuToggle}
+                          >
+                            {menuItem.label}
+                          </div>
+                          {/* Detailed Submenu */}
+                          {showDetailedSubMenu &&
+                            menuItem.label === "美食" && (
+                              <div className="ml-2">
+                                {detailedSubMenuItems.map((item, index) => (
+                                  <div key={index}>
+                                    <a href="#">{item}</a>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -139,11 +150,11 @@ const App = () => {
         </div>
 
         {/* Right Workspace Area */}
-        <div className="flex-1 p-4 ml-4 bg-gray-300">
+        <div className="flex-1 p-4 ml-4">
           {/* Input Area */}
           <div className="flex items-center mb-4">
             <div className="font-semibold mr-4">Prompt</div>
-            <textarea className="flex-1 border border-gray-300 p-2"></textarea>
+            <textarea className="flex-1 border p-2"></textarea>
             <div className="ml-4 flex-col">
               <button className="px-2 py-1 rounded-md bg-blue-500 text-white mb-2 mr-2">
                 Copy
@@ -158,30 +169,30 @@ const App = () => {
           <div className="flex items-center mb-4">
             {/* Filter inputs */}
             <div className="flex">
-      {/* First Input */}
-      <div className="flex mr-2">
-        <label htmlFor="inputA" className="block mb-1">
-          a:
-        </label>
-        <input
-          type="text"
-          id="inputA"
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </div>
+              {/* First Input */}
+              <div className="flex mr-2">
+                <label htmlFor="inputA" className="block mr-3">
+                  条件一:
+                </label>
+                <input
+                  type="text"
+                  id="inputA"
+                  className="border rounded-md p-2"
+                />
+              </div>
 
-      {/* Second Input */}
-      <div className='flex mr-2'>
-        <label htmlFor="inputB" className="block mb-1">
-          b:
-        </label>
-        <input
-          type="text"
-          id="inputB"
-          className="border border-gray-300 rounded-md p-2"
-        />
-      </div>
-    </div>
+              {/* Second Input */}
+              <div className='flex mr-2'>
+                <label htmlFor="inputB" className="block mr-3">
+                  条件二:
+                </label>
+                <input
+                  type="text"
+                  id="inputB"
+                  className="border rounded-md p-2"
+                />
+              </div>
+            </div>
             <button className="ml-4 px-2 py-1 rounded-md bg-blue-500 text-white">
               过滤
             </button>
@@ -189,20 +200,53 @@ const App = () => {
 
           {/* Item Display Area */}
           <div className="grid grid-cols-4 gap-4">
-      {images.map((image) => (
-        <div key={image.id}>
-          {/* Image */}
-          <img src={image.imageUrl} alt={image.altText}/>
-          {/* Text */}
-          <div className="text-center">{image.altText}</div>
-        </div>
-      ))}
-    </div>
+            {images.map((image) => (
+              <div key={image.id}>
+                {/* Image */}
+                <img src={image.imageUrl} alt={image.altText} />
+                {/* Text */}
+                <div className="text-center">{image.altText}</div>
+              </div>
+            ))}
+          </div>
 
           {/* Pagination */}
           <div className="flex justify-center mt-2">
             {/* Pagination component */}
-            {/* (Your pagination component here) */}
+            {/* Previous page button */}
+            <button className="px-2 py-1 rounded-md text-gray mr-2">
+              &lt;&lt;
+            </button>
+            <button className="px-2 py-1 rounded-md text-gray mr-2">
+              &lt;
+            </button>
+
+            {/* Page numbers */}
+            {renderPageNumbers().map((pageNumber) => (
+              <div
+                key={pageNumber}
+                className={`${pageNumber === currentPage
+                    ? 'px-2 py-1 bg-blue-500 text-gray'
+                    : 'px-2 py-1'
+                  } mx-1`}
+              >
+                {pageNumber}
+              </div>
+            ))}
+
+            {/* Ellipsis */}
+            <div className="mx-1">...</div>
+
+            {/* Last page number */}
+            <div className="px-2 py-1 mx-1">{totalPages}</div>
+
+            {/* Next page button */}
+            <button className="px-2 py-1 rounded-md text-gray ml-2">
+              &gt;
+            </button>
+            <button className="px-2 py-1 rounded-md text-gray ml-2">
+              &gt;&gt;
+            </button>
           </div>
         </div>
       </div>
