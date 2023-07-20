@@ -108,7 +108,7 @@ const App = () => {
                   <a href="#">{item}</a>
                   {showSubMenu && (
                     <div className="absolute mt-2 bg-white border p-2 rounded-md">
-                      {menuItems.map((menuItem, index) => (
+                      {detailedSubMenuItems.map((menuItem, index) => (
                         <div key={index}>
                           <div
                             className="font-semibold mb-1 cursor-pointer"
@@ -118,8 +118,7 @@ const App = () => {
                             {menuItem.label}
                           </div>
                           {/* Detailed Submenu */}
-                          {showDetailedSubMenu &&
-                            menuItem.label === "美食" && (
+                          {showDetailedSubMenu && (
                               <div className="ml-2">
                                 {detailedSubMenuItems.map((item, index) => (
                                   <div key={index}>
