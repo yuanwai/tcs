@@ -4,18 +4,18 @@ import React, { useState } from 'react';
 
 const App = () => {
   // State to control the visibility of the submenu and detailed submenu
-  const [showSubMenu, setShowSubMenu] = useState(false);
-  const [showDetailedSubMenu, setShowDetailedSubMenu] = useState(false);
+  const [showSecondMenu, setShowSecondMenu] = useState(false);
+  const [showThirdMenu, setShowThirdMenu] = useState(false);
 
   // Sample data for menu and submenu items
   const menuItems = [
     {
       label: '分类',
-      subItems: ['美食', '家装', '广告', 'UI设计', '时装'],
+      secondItems: ['美食', '家装', '广告', 'UI设计', '时装'],
     },
     {
       label: '最近使用',
-      subItems: ['美食商业摄影', '吉卜力动漫'],
+      secondItems: ['美食商业摄影', '吉卜力动漫'],
     },
   ];
 
@@ -32,14 +32,15 @@ const App = () => {
   ];
 
   // Sample data for detailed submenu
-  const detailedSubMenuItems = ['牛排', '中餐', '日料', '法餐'];
+  // const thirdMenuItems = ['牛排',  '中餐', '日料', '法餐'];
+  const thirdMenuItems = ['牛排', '中餐','日料','法餐'];
 
-  const handleSubMenuToggle = () => {
-    setShowSubMenu(!showSubMenu);
+  const handleSecondMenuToggle = () => {
+    setShowSecondMenu(!showSecondMenu);
   };
 
-  const handleDetailedSubMenuToggle = () => {
-    setShowDetailedSubMenu(!showDetailedSubMenu);
+  const handleThirdMenuToggle = () => {
+    setShowThirdMenu(!showThirdMenu);
   };
 
   const currentPage = 1;
@@ -100,37 +101,25 @@ const App = () => {
           <div className="mb-4">
             <div className="font-semibold mb-2">分类</div>
             <ul>
-              {menuItems[0].subItems.map((item, index) => (
+              {menuItems[0].secondItems.map((item, index) => (
                 <li key={index} className="px-2 py-1 rounded-md"
-                  onMouseEnter={handleSubMenuToggle}
-                  onMouseLeave={handleSubMenuToggle}>
-                  {/* Submenu item */}
+                  onMouseEnter={handleThirdMenuToggle}
+                  onMouseLeave={handleThirdMenuToggle}>
+                  {/* Show Second Menu item */}
                   <a href="#">{item}</a>
-                  {showSubMenu && (
-                    <div className="absolute mt-2 bg-white border p-2 rounded-md">
-                      {detailedSubMenuItems.map((menuItem, index) => (
+                  {/* Show Third Menu item */}
+                  {showThirdMenu && (
+                    <div className="absolute ml-5 bg-white border p-1 rounded-md flex">
+                      { thirdMenuItems.map((menuItem, index) => (
                         <div key={index}>
-                          <div
-                            className="font-semibold mb-1 cursor-pointer"
-                            onMouseEnter={handleDetailedSubMenuToggle}
-                            onMouseLeave={handleDetailedSubMenuToggle}
-                          >
-                            {menuItem.label}
+                          <div className="font-semibold mb-1 m-2 cursor-pointer">
+                            {menuItem}
                           </div>
-                          {/* Detailed Submenu */}
-                          {showDetailedSubMenu && (
-                              <div className="ml-2">
-                                {detailedSubMenuItems.map((item, index) => (
-                                  <div key={index}>
-                                    <a href="#">{item}</a>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
                         </div>
                       ))}
                     </div>
                   )}
+
                 </li>
               ))}
             </ul>
@@ -138,7 +127,7 @@ const App = () => {
           <div>
             <div className="font-semibold mb-2">最近使用</div>
             <ul>
-              {menuItems[1].subItems.map((item, index) => (
+              {menuItems[1].secondItems.map((item, index) => (
                 <li key={index}>
                   {/* Submenu item */}
                   <a href="#">{item}</a>
