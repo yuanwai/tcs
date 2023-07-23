@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 
 const App = () => {
   // State to control the visibility of the submenu and detailed submenu
-  const [showSecondMenu, setShowSecondMenu] = useState(false);
   const [showThirdMenu, setShowThirdMenu] = useState(false);
 
   // Sample data for menu and submenu items
@@ -32,13 +31,6 @@ const App = () => {
   ];
 
   // Sample data for detailed submenu
-  // const thirdMenuItems = ['牛排',  '中餐', '日料', '法餐'];
-  const thirdMenuItems = ['牛排', '中餐','日料','法餐'];
-
-  const handleSecondMenuToggle = () => {
-    setShowSecondMenu(!showSecondMenu);
-  };
-
   const handleThirdMenuToggle = () => {
     setShowThirdMenu(!showThirdMenu);
   };
@@ -97,35 +89,32 @@ const App = () => {
       <div className="flex p-4 bg-x-gradient-grey-200-grey-400-80">
         {/* Left Menu Area */}
         <div className="p-4 w-1/12 h-full">
+
+
+
           {/* Left Menu content */}
           <div className="mb-4">
-            <div className="font-semibold mb-2">分类</div>
+            <div className="font-semibold mb-2 text-lg">分类</div>
             <ul>
               {menuItems[0].secondItems.map((item, index) => (
                 <li key={index} className="px-2 py-1 rounded-md"
                   onMouseEnter={handleThirdMenuToggle}
-                  onMouseLeave={handleThirdMenuToggle}>
-                  {/* Show Second Menu item */}
+                  onMouseLeave={handleThirdMenuToggle}
+                >
                   <a href="#">{item}</a>
-                  {/* Show Third Menu item */}
-                  {showThirdMenu && (
-                    <div className="absolute ml-5 bg-white border p-1 rounded-md flex">
-                      { thirdMenuItems.map((menuItem, index) => (
-                        <div key={index}>
-                          <div className="font-semibold mb-1 m-2 cursor-pointer">
-                            {menuItem}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
                 </li>
-              ))}
+              ))
+              }
             </ul>
+            {
+              console.log();
+            }
           </div>
+
+
+
           <div>
-            <div className="font-semibold mb-2">最近使用</div>
+            <div className="font-semibold mb-2 text-lg">最近使用</div>
             <ul>
               {menuItems[1].secondItems.map((item, index) => (
                 <li key={index}>
@@ -191,7 +180,7 @@ const App = () => {
             {images.map((image) => (
               <div key={image.id}>
                 {/* Image */}
-                <img src={image.imageUrl} alt={image.altText} />
+                <img src={image.imageUrl} alt={image.altText} width={600} height={360} />
                 {/* Text */}
                 <div className="text-center">{image.altText}</div>
               </div>
@@ -214,8 +203,8 @@ const App = () => {
               <div
                 key={pageNumber}
                 className={`${pageNumber === currentPage
-                    ? 'px-2 py-1 bg-blue-500 text-gray'
-                    : 'px-2 py-1'
+                  ? 'px-2 py-1 bg-blue-500 text-gray'
+                  : 'px-2 py-1'
                   } mx-1`}
               >
                 {pageNumber}
