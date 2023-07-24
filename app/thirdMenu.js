@@ -1,5 +1,5 @@
 
-function ThirdMenu(item) {
+export function ThirdMenu() {
 
     const thirdMenuItems = [
         {
@@ -14,11 +14,11 @@ function ThirdMenu(item) {
 
     return (
         <div>
-            {/* Show Third Menu item */}
             { 
                 thirdMenuItems.forEach(element => {
-                    if (element.label === item) {
-                        (<div key={index} className="absolute ml-5 cursor-pointer font-semibold bg-white border p-1 rounded-md flex">
+                    // if (element.label === item) {
+                        if (true){
+                        (<div className="absolute ml-5 cursor-pointer font-semibold bg-white border p-1 rounded-md flex">
                             {element.thirdItems}
                         </div>)
                         return;
