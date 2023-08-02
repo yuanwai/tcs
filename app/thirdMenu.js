@@ -1,5 +1,5 @@
 
-export function ThirdMenu() {
+export function ThirdMenu(secondItem) {
 
     const thirdMenuItems = [
         {
@@ -13,11 +13,12 @@ export function ThirdMenu() {
     ]
 
     return (
+        
         <div>
             { 
                 thirdMenuItems.forEach(element => {
-                    // if (element.label === item) {
-                        if (true){
+                    console.log(element.label+":"+secondItem.);
+                     if (element.label === secondItem) {
                         (<div className="absolute ml-5 cursor-pointer font-semibold bg-white border p-1 rounded-md flex">
                             {element.thirdItems}
                         </div>)

@@ -57,7 +57,9 @@ const App = () => {
                   onMouseLeave={handleThirdMenuToggle}
                 >
                   <a href="#">{item}</a>
-                  {showThirdMenu && <ThirdMenu />}
+                  {showThirdMenu && (
+                  <ThirdMenu secondItem={item}>
+                  </ThirdMenu>)}
                 </li>
               ))
               }
