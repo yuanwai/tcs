@@ -1,3 +1,4 @@
+
 export function PromptBar(){
     return(
         <div className="flex items-center mb-4">
@@ -15,9 +16,10 @@ export function PromptBar(){
     )
 }
 
-export function FilterArea(){
 
+export function FilterArea(){
   return(
+
       <div className="flex items-center mb-4">
       {/* Filter inputs */}
       <div className="flex">
@@ -49,5 +51,6 @@ export function FilterArea(){
         过滤
       </button>
     </div>
+
   )
 }

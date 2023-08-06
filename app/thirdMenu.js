@@ -1,5 +1,5 @@
 
-export function ThirdMenu(secondItem) {
+export function ThirdMenu(secondLabel) {
 
     const thirdMenuItems = [
         {
@@ -11,24 +11,19 @@ export function ThirdMenu(secondItem) {
             thirdItems: ['MILAN 2024', 'HOMOLOG 2024', 'SHANGHAI 2025'],
         },
     ]
-
+    console.log(secondLabel);
     return (
-        
         <div>
             { 
                 thirdMenuItems.forEach(element => {
-                    console.log(element.label+":"+secondItem.);
-                     if (element.label === secondItem) {
+                     if (element.label === secondLabel) {
                         (<div className="absolute ml-5 cursor-pointer font-semibold bg-white border p-1 rounded-md flex">
                             {element.thirdItems}
                         </div>)
-                        return;
+                        // return;
                     }
                 })
             }
         </div>
     )
-
-
-
 }

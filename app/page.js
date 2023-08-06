@@ -9,9 +9,7 @@ import { PageNav } from './pageNav';
 
 
 const App = () => {
-  // State to control the visibility of the submenu and detailed submenu
-  const [showThirdMenu, setShowThirdMenu] = useState(false);
-
+  
   // Sample data for menu and submenu items
   const menuItems = [
     {
@@ -24,10 +22,16 @@ const App = () => {
     },
   ];
 
-  // Sample data for detailed submenu
-  const handleThirdMenuToggle = () => {
-    setShowThirdMenu(!showThirdMenu);
-  };
+
+
+  const [isThridEnabled, setIsThirdEndble] = useState(false);
+  const [secondLabel, setSecondLabel] = useState("");
+
+  const showLabel = (item) => {
+    setIsThirdEndble(!isThridEnabled);
+    setSecondLabel(()=>{secondLabel = item; return});
+    secondLabel = item;
+  }
 
   return (
     <div>
@@ -52,14 +56,8 @@ const App = () => {
             <div className="font-semibold mb-2 text-lg">分类</div>
             <ul>
               {menuItems[0].secondItems.map((item, index) => (
-                <li key={index} className="px-2 py-1 rounded-md"
-                  onMouseEnter={handleThirdMenuToggle}
-                  onMouseLeave={handleThirdMenuToggle}
-                >
-                  <a href="#">{item}</a>
-                  {showThirdMenu && (
-                  <ThirdMenu secondItem={item}>
-                  </ThirdMenu>)}
+                <li key={index} className="px-2 py-1 rounded-md">
+                  <a href="#" onClick={() => showLabel(item)}>{item}</a>
                 </li>
               ))
               }
@@ -83,8 +81,13 @@ const App = () => {
         <div className="flex-1 p-4 ml-4">
           {/* Input Area */}
           <PromptBar/>
+          <div>美食主题:
+         {
+         isThridEnabled && <ThirdMenu secondLabel={secondLabel} />
+         }
+</div>
           {/* Filter Area */}
-         <FilterArea/>
+         {/* <FilterArea secondLabel={secondLabel} /> */}
           {/* Item Display Area */}
           <ImgDisplay/>
           {/* Pagination */}
