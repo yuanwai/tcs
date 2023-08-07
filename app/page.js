@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import { ThirdMenu } from './thirdMenu';
-import { RightTopMenu,SearchBar,Logo } from './topMenuBar';
-import { PromptBar,FilterArea } from './promptBar';
+import { RightTopMenu, SearchBar, Logo } from './topMenuBar';
+import { PromptBar, FilterArea } from './promptBar';
 import { ImgDisplay } from './imgDisplay';
 import { PageNav } from './pageNav';
 
 
 const App = () => {
-  
+
   // Sample data for menu and submenu items
   const menuItems = [
     {
@@ -25,12 +25,11 @@ const App = () => {
 
 
   const [isThridEnabled, setIsThirdEndble] = useState(false);
-  const [secondLabel, setSecondLabel] = useState("");
+  const [secondLabel, setSecondLabel] = useState('');
 
   const showLabel = (item) => {
-    setIsThirdEndble(!isThridEnabled);
-    setSecondLabel(()=>{secondLabel = item; return});
-    secondLabel = item;
+    // setIsThirdEndble(!isThridEnabled);
+    setSecondLabel(item);
   }
 
   return (
@@ -39,12 +38,12 @@ const App = () => {
       <div className="p-2 flex justify-between items-center shadow-md">
         <div className="flex items-center w-4/5">
           {/* Logo */}
-          <Logo/>
+          <Logo />
           {/* Search box */}
-          <SearchBar/>
+          <SearchBar />
         </div>
         {/* Menu */}
-        <RightTopMenu/>
+        <RightTopMenu />
       </div>
 
       {/* Main Area */}
@@ -80,16 +79,13 @@ const App = () => {
         {/* Right Workspace Area */}
         <div className="flex-1 p-4 ml-4">
           {/* Input Area */}
-          <PromptBar/>
-          <div>美食主题:
-         {
-         isThridEnabled && <ThirdMenu secondLabel={secondLabel} />
-         }
-</div>
-          {/* Filter Area */}
-         {/* <FilterArea secondLabel={secondLabel} /> */}
+          <PromptBar />
+          <div className='flex'>
+            <div className='font-semibold'>主题：</div>
+            <ThirdMenu secondLabel={secondLabel} />
+          </div>
           {/* Item Display Area */}
-          <ImgDisplay/>
+          <ImgDisplay />
           {/* Pagination */}
           <PageNav />
         </div>
