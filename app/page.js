@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { ThirdMenu } from './thirdMenu';
 import { RightTopMenu, SearchBar, Logo } from './topMenuBar';
 import { PromptBar, FilterArea } from './promptBar';
-import { ImgDisplay } from './imgDisplay';
 import { PageNav } from './pageNav';
 
 
@@ -24,12 +23,15 @@ const App = () => {
 
 
 
-  const [isThridEnabled, setIsThirdEndble] = useState(false);
   const [secondLabel, setSecondLabel] = useState('');
+  const [currentPrompt, setCurrentPrompt] = useState('');
 
   const showLabel = (item) => {
-    // setIsThirdEndble(!isThridEnabled);
     setSecondLabel(item);
+  }
+
+  const showPrompt = (item) => {
+    setCurrentPrompt(item);
   }
 
   return (
@@ -92,6 +94,36 @@ const App = () => {
       </div>
     </div>
   );
+
+
+function ImgDisplay(){
+  const images = [
+      { id: 1, imageUrl: 'https://www.luxiangdong.com/images/food/meishi1-600x360.png', prompt: 'meishi1-600x360' },
+      { id: 2, imageUrl: 'https://www.luxiangdong.com/images/food/meishi2-600x360.png', prompt: 'meishi2-600x360' },
+      { id: 3, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang1-400x240.png', prompt: 'jiazhuang1-400x240' },
+      { id: 4, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang2-400x240.png', prompt: 'jiazhuang2-400x240' },
+      { id: 5, imageUrl: 'https://www.luxiangdong.com/images/food/meishi1-600x360.png', prompt: '图片展示内容' },
+      { id: 6, imageUrl: 'https://www.luxiangdong.com/images/food/meishi2-600x360.png', prompt: '图片展示内容' },
+      { id: 7, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang1-400x240.png', prompt: '图片展示内容' },
+      { id: 8, imageUrl: 'https://www.luxiangdong.com/images/food/jiazhuang2-400x240.png', prompt: '图片展示内容' },
+      // ... Add more image data here
+    ];
+
+    return(
+      <div className="grid grid-cols-4 gap-4">
+          {images.map((image) => (
+            <div key={image.id}>
+              {/* Image */}
+              <img src={image.imageUrl} alt='' width={600} height={360} />
+              {/* Text */}
+              <button className="rounded-sm px-2 py-1 bg-blue-500 border" onClick={() => showPrompt(image.prompt)}>使用Prompt</button>
+            </div>
+          ))}
+        </div>
+    )
+}
 };
+
+
 
 export default App;
